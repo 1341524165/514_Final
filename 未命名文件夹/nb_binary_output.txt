@@ -1,0 +1,9 @@
+
+=== Naïve Bayes Classifier ===
+var_smoothing = 1e-09, Accuracy = 0.8715
+var_smoothing = 1e-08, Accuracy = 0.8715
+var_smoothing = 1e-07, Accuracy = 0.8715
+Training accuracy: 0.8687
+Training time: 0.0007 seconds
+Validation accuracy: 0.8688
+Testing time: 0.0002 seconds

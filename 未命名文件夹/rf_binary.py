@@ -7,8 +7,8 @@ from sklearn.model_selection import cross_val_score, KFold
 from sklearn.ensemble import RandomForestClassifier
 
 # Load the training and validation datasets
-train_data = pd.read_csv('binary_train_set.csv')
-val_data = pd.read_csv('binary_validation_set.csv')
+train_data = pd.read_csv('binary_train_set_pca.csv')
+val_data = pd.read_csv('binary_validation_set_pca.csv')
 
 # X as features and y as actual labels
 X_train = train_data.drop(['quality_label'], axis=1)

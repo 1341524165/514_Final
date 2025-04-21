@@ -1,0 +1,9 @@
+
+=== Random Forest ===
+n_estimators = 50, Accuracy = 0.9062
+n_estimators = 100, Accuracy = 0.9055
+n_estimators = 150, Accuracy = 0.9027
+Training accuracy: 1.0000
+Training time: 0.0666 seconds
+Validation accuracy: 0.9187
+Testing time: 0.0017 seconds

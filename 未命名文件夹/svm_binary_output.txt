@@ -1,0 +1,9 @@
+
+=== Support Vector Machine ===
+C = 0.1, Accuracy = 0.8624
+C = 1, Accuracy = 0.8624
+C = 10, Accuracy = 0.8624
+Training accuracy: 0.8624
+Training time: 0.0052 seconds
+Validation accuracy: 0.8812
+Testing time: 0.0008 seconds

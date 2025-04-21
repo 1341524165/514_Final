@@ -4,11 +4,11 @@ import time
 import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import cross_val_score, KFold
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
 
 # Load the training and validation datasets
-train_data = pd.read_csv('binary_train_set.csv')
-val_data = pd.read_csv('binary_validation_set.csv')
+train_data = pd.read_csv('binary_train_set_pca.csv')
+val_data = pd.read_csv('binary_validation_set_pca.csv')
 
 # X as features and y as actual labels
 X_train = train_data.drop(['quality_label'], axis=1)
@@ -17,15 +17,15 @@ X_val = val_data.drop(['quality_label'], axis=1)
 y_val = val_data['quality_label']
 
 # Define hyperparameter values for tuning
-param_name = 'n_estimators'
-param_values = [50, 100, 150]  # Number of trees
+param_name = 'C'
+param_values = [0.1, 1, 10]  # Regularization parameter
 
-print("\n=== Random Forest ===")
+print("\n=== Support Vector Machine ===")
 
 # Cross-validation for hyperparameter tuning
 cv_scores = []
 for value in param_values:
-    model = RandomForestClassifier(n_estimators=value, random_state=25)
+    model = SVC(C=value, kernel='linear', random_state=25)
     kf = KFold(n_splits=5, shuffle=True, random_state=25)
     cv_result = cross_val_score(model, X_train, y_train, cv=kf, scoring='accuracy')
     mean_score = np.mean(cv_result)
@@ -35,15 +35,15 @@ for value in param_values:
 # Plot cross-validation results
 plt.figure(figsize=(8, 5))
 plt.plot(param_values, cv_scores, marker='o')
-plt.title('5-Fold Cross Validation Accuracy for Random Forest')
+plt.title('5-Fold Cross Validation Accuracy for Support Vector Machine')
 plt.xlabel(param_name)
 plt.ylabel('Accuracy')
 plt.grid(True)
-plt.savefig('rf_binary_cv_plot.png')
+plt.savefig('svm_binary_cv_plot.png')
 
 # Train best model (using the best parameter from CV)
 best_param = param_values[np.argmax(cv_scores)]
-model = RandomForestClassifier(n_estimators=best_param, random_state=25)
+model = SVC(C=best_param, kernel='linear', random_state=25)
 
 # Train, record time
 start_train = time.time()

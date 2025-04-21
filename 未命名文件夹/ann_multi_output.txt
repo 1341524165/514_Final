@@ -1,0 +1,9 @@
+
+=== Artificial Neural Network ===
+hidden_layer_sizes = (50,), Accuracy = 0.6255
+hidden_layer_sizes = (100,), Accuracy = 0.6352
+hidden_layer_sizes = (50, 50), Accuracy = 0.6532
+Training accuracy: 0.7846
+Training time: 0.7184 seconds
+Validation accuracy: 0.6625
+Testing time: 0.0003 seconds

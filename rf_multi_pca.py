@@ -5,16 +5,22 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import cross_val_score, KFold
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import StandardScaler
 
 # Load the training and validation datasets
-train_data = pd.read_csv('binary_train_set.csv')
-val_data = pd.read_csv('binary_validation_set.csv')
+train_data = pd.read_csv('multi_train_set_pca.csv')
+val_data = pd.read_csv('multi_validation_set_pca.csv')
 
 # X as features and y as actual labels
 X_train = train_data.drop(['quality_label'], axis=1)
 y_train = train_data['quality_label']
 X_val = val_data.drop(['quality_label'], axis=1)
 y_val = val_data['quality_label']
+
+# Standardize the features
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_val = scaler.transform(X_val)
 
 # Define hyperparameter values for tuning
 param_name = 'n_estimators'
@@ -39,7 +45,7 @@ plt.title('5-Fold Cross Validation Accuracy for Random Forest')
 plt.xlabel(param_name)
 plt.ylabel('Accuracy')
 plt.grid(True)
-plt.savefig('rf_binary_cv_plot.png')
+plt.savefig('rf_multi_pca_cv_plot.png')
 
 # Train best model (using the best parameter from CV)
 best_param = param_values[np.argmax(cv_scores)]
